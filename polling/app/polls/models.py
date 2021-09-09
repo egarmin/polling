@@ -1,12 +1,10 @@
+# -*- coding: utf-8 -*-
 
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.utils import timezone
 
-from polling.core import JSONField
-
-
-# Create your models here.
-
+# from polling.core import JSONField
 
 
 class Question(models.Model):
@@ -16,18 +14,17 @@ class Question(models.Model):
     MULTI = 'multi'
 
     QUESTION_TYP_CHOICES = (
-            (TXT, 'Your text'),
-            (SIMPLE, 'The one option'),
-            (MULTI, 'Several options'),
+        (TXT, 'Your text'),
+        (SIMPLE, 'The one option'),
+        (MULTI, 'Several options'),
     )
 
     text = models.CharField(max_length=1024)
 
-    typ = models.CharField(max_length=16, choices=QUESTION_TYP_CHOICES)
+    typ = models.CharField(
+        max_length=16, choices=QUESTION_TYP_CHOICES, default=SIMPLE)
 
-    options = JSONField(default="[]")
-
-
+    options = JSONField(blank=True, null=True)
 
     class Meta:
         app_label = 'polls'

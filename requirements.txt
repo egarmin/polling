@@ -7,3 +7,4 @@ simplejson==3.17.5
 
 python-dateutil==2.8.2
 six-1.16.0
+psycopg2==2.8
